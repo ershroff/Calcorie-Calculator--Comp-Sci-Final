@@ -1,0 +1,99 @@
+import java.util.Scanner;
+
+public class CalorieCalc {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Hello! Welcome to the Calorie Calculator! Please your enter name: ");
+        String name = scan.nextLine();
+        
+        System.out.println("Hello " + name + " PLease enter your Height (in inches) ");
+        double height = scan.nextDouble() *2.54;
+        
+
+        System.out.println("Weight (LBS rounded):");
+        double weight = scan.nextDouble() *0.45359237;
+
+        System.out.println( "Age: ");
+        double age = scan.nextDouble();
+        
+        System.out.println("Biological Sex: ('M' for male)('F' for female) ");
+        String t = scan.nextLine();
+        String s = scan.nextLine();
+        int x = 0;
+        if(t.equals("M") || s.equals("M"))
+        {
+             x += 5;
+        }
+        else
+        {
+            x += -161;
+        }
+        System.out.println("To accurately calculate your caloric intake, we must know your activity level. Please type one of the following.... \n'Sedentary' (little or no exercise) \n'Lightly Active' (light exercise/sports 1-3 days/week) \n'Moderately Active' (moderate exercise/sports 3-5 days/week) \n'Very Active' (hard exercise/sports 6-7 days a week) \n'Extra Active' (very hard exercise/sports & physical job or 2x training)");
+        String activity = scan.nextLine().toLowerCase();
+        double multiplier=0;
+        if(activity.equals("sedentary"))
+        {
+            multiplier=1.2;
+        }
+        else if(activity.equals("lightly active"))
+        {
+            multiplier=1.375;
+        }
+        else if(activity.equals("moderately active"))
+        {
+            multiplier=1.55;
+        }
+        else if(activity.equals("very active"))
+        {
+            multiplier=1.725;
+        }
+        else if(activity.equals("extra active"))
+        {
+            multiplier=1.9;
+        }
+        else
+        {
+            System.out.println("invalid input. ");
+            
+        }
+        
+        
+        int bmr= (int) (((10*weight)+(6.25*height)-(5*age) +x)*multiplier) ;
+        
+        System.out.println("What is your weight goal:  \n'Maintain Weight' \n'Lose Weight' \n'Gain Weight' ");
+        String goal = scan.nextLine().toLowerCase();
+        
+        if(goal.equals("maintain weight"))
+        {
+            System.out.println("Your daily mantainance caloric intake is " + bmr + " Calories per day ");
+
+        }
+        else if(goal.equals("lose weight"))
+        {
+            System.out.println("Your daily caloric intake for weight loss is...\n" + (int)(bmr*0.89) + " Calories/day for Mild weight loss(0.5lb/week)\n" +  (int)(bmr*0.79) + " Calories/day for weight loss(1lb/week) \n" +  (int)(bmr*0.57) + " Calories/day for EXTREME weight loss(2lb/week)(NOT RECCOMENDED)" );
+            System.out.println("\nWould you like to see good low calorie food substitutions? 'X' for yes   'Y' for no ");
+            String ans = scan.nextLine().toLowerCase();
+            if(ans.equals("x"))
+            {
+                System.out.println("__Best Low Calories food Substitutions__\n" + " 1. Use applesauce instead of oil when baking.\n 2. Eat brown rice instead of white rice.\n 3. Use egg whites instead of whole eggs.\n 4. Choose multigrain or whole wheat pasta instead of white pasta. \n 5. Select low-fat cheese over full-fat cheese.\n 6. Use fat-free yogurt instead of sour cream.\n 7. Try fresh herbs and spices instead of salt and salt-based herbs. \n 8. Choose skim or low-fat milk over cream.\n 9. Select whole wheat flour over all-purpose flour.\n 10. Use ground turkey, ground chicken, firm tofu, extra-lean ground beef." );
+            }
+        }
+        else if(goal.equals("gain weight"))
+        {
+            System.out.println("Your daily caloric intake for weight gain is...\n" + (int)(bmr*1.11) + " calroies/day for mild weight gain(0.5lb/week)\n" + (int)(bmr*1.21) + " calories per/day for weight gain(1lb/week)\n" + (int)(bmr*1.43) + " calories/day for extreme weight gain (2lb/week) ");
+            System.out.println("Would you like to see high calorie food substitutions? 'X' for yes  'Y' for no ");
+            String ans = scan.nextLine().toLowerCase();
+            if(ans.equals("x"))
+            {
+                System.out.println("__Best High Calorie Foods__\n 1.Peanut Butter \n 2.Oils, Sauces, and Gravies \n 3. Red Meat \n 4. Granola \n 5. Smoothies \n 6. Pasta \n 7. Potatoes \n 8. Avocados \n 9. Protein Supplements \n 10. Whole Grain Bread");
+            }
+        }
+        else
+        {
+            System.out.println("invaild input");
+        }
+        
+
+    }
+}
+
